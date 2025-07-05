@@ -1,7 +1,6 @@
-# Docker Compose Stack: Full-Stack App
+# PERN Stack (PostgreSQL, Express, React, Node.js) with Docker & nginx
 
-This project is a full-stack web application using Docker Compose.  
-It includes a React frontend (served by nginx), an Express backend (with Prisma ORM), and a PostgreSQL database.
+This project is a full-featured **PERN stack** application, containerized with Docker Compose and production-ready with nginx as a static file server and reverse proxy.
 
 ---
 
