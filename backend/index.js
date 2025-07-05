@@ -32,18 +32,20 @@ app.post('/api/register', async (req, res) => {
     data: { email, password: hashedPassword, verificationToken }
   });
 
-  // Transporter konfigurieren (hier Beispiel für Gmail, passe es an deinen Provider an!)
+
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: process.env.SMTP_HOST,
+    port: Number(process.env.SMTP_PORT),
+    secure: true, // true für Port 465
     auth: {
       user: process.env.SMTP_USER,
       pass: process.env.SMTP_PASS
     }
   });
 
-  const verifyUrl = `http://localhost:3001/verify-email?token=${verificationToken}`;
+  const verifyUrl = `https://sliot.zapto.org/verify-email?token=${verificationToken}`;
   await transporter.sendMail({
-    from: '"Deine App" <noreply@deineapp.de>',
+    from: '"SL IoT" <noreply@deineapp.de>',
     to: email,
     subject: "Bitte bestätige deine E-Mail",
     html: `<p>Klicke <a href="${verifyUrl}">hier</a>, um deine E-Mail zu bestätigen.</p>`
@@ -122,15 +124,7 @@ app.post('/api/request-password-reset', async (req, res) => {
     data: { resetToken, resetTokenExpiry }
   });
 
-  // Sende E-Mail mit Link (z.B. http://localhost:3001/reset-password?token=...)
-  // ...nodemailer code...
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS
-    }
-  });
+  
 
   const resetUrl = `http://localhost:3001/reset-password?token=${resetToken}`;
   await transporter.sendMail({

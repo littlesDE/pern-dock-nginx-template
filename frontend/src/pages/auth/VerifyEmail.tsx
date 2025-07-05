@@ -18,10 +18,12 @@ const VerifyEmail: React.FC = () => {
   }, [token]);
 
   return (
-    <div>
-      <h2>E-Mail Verifizierung</h2>
-      <p>{message}</p>
-      <Link to="/login">Zum Login</Link>
+    <div className="flex min-h-screen items-center justify-center">
+      <div className="bg-white/10 backdrop-blur-md shadow-xl rounded-xl p-8 w-full max-w-md flex flex-col gap-4 border border-teal-700 mx-auto mt-20">
+        <h2 className="text-2xl font-bold text-teal-300 text-center mb-2">E-Mail bestätigen</h2>
+        <p className="text-teal-200 text-center">{message}</p>
+        <Link to="/login" className="text-teal-400 hover:underline text-center">Zum Login</Link>
+      </div>
     </div>
   );
 };
