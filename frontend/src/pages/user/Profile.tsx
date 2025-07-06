@@ -24,10 +24,7 @@ const Profile: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    fetch("/api/profile", {
-      headers: { Authorization: `Bearer ${token}` },
-    })
+    fetch("/api/profile", { credentials: "include" })
       .then(res => res.json())
       .then(data => {
         if (data && data.id) {

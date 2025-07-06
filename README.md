@@ -1,5 +1,15 @@
 # PERN Stack (PostgreSQL, Express, React, Node.js) mit Docker & nginx
 
+![PERN Stack](https://img.shields.io/badge/Stack-PERN-4479A1?logo=postgresql&logoColor=white) 
+![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-336791?logo=postgresql&logoColor=white) 
+![Express Backend](https://img.shields.io/badge/Backend-Express-000000?logo=express&logoColor=white) 
+![React Frontend](https://img.shields.io/badge/Frontend-React-61DAFB?logo=react&logoColor=white)
+![Node.js](https://img.shields.io/badge/Runtime-Node.js-339933?logo=node.js&logoColor=white) 
+![Docker](https://img.shields.io/badge/Container-Docker-2496ED?logo=docker&logoColor=white) 
+![NGINX](https://img.shields.io/badge/Server-NGINX-009639?logo=nginx&logoColor=white) 
+![Status Badge](https://img.shields.io/badge/Status-Development-red)
+
+
 Dieses Projekt ist ein vollständiger **PERN-Stack** (PostgreSQL, Express, React, Node.js), containerisiert mit Docker Compose und produktionsreif mit nginx als Reverse Proxy und Static File Server.
 
 ---

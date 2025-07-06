@@ -156,4 +156,8 @@ router.post("/login", async (req: Request, res: Response) => {
   }
 });
 
+router.get("/login", (req: Request, res: Response) => {
+  res.json({ ok: true });
+});
+
 export default router;

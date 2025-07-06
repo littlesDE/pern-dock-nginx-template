@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function getCookie(name: string): string | null {
@@ -11,6 +11,13 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch("/api/login", { credentials: "include" });
+    if (localStorage.getItem("token")) {
+      navigate("/");
+    }
+  }, [navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,6 +35,7 @@ const Login: React.FC = () => {
       });
       const data = await res.json();
       if (res.ok && data.success) {
+        localStorage.setItem("token", "1");
         navigate("/");
       } else {
         setError(data.error || "Login fehlgeschlagen");
