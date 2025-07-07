@@ -1,4 +1,10 @@
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+} from "react-router";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Profile from "./pages/user/Profile";
@@ -7,6 +13,7 @@ import RequestPasswordReset from "./pages/auth/RequestPasswordReset";
 import ResetPassword from "./pages/auth/ResetPassword";
 import Home from "./pages/user/Home";
 import Layout from "./components/Layout";
+import AuthLayout from "./components/AuthLayout";
 
 function RequireAuth({ children }: { children: React.ReactNode }) {
   const token = localStorage.getItem("token");
@@ -19,21 +26,41 @@ function RequireAuth({ children }: { children: React.ReactNode }) {
 
 const App: React.FC = () => {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
-        <Route element={<Layout />}>
+        <Route element={<AuthLayout />}>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/verify-email" element={<VerifyEmail />} />
-          <Route path="/request-password-reset" element={<RequestPasswordReset />} />
+          <Route
+            path="/request-password-reset"
+            element={<RequestPasswordReset />}
+          />
           <Route path="/reset-password" element={<ResetPassword />} />
-          <Route path="/" element={<RequireAuth><Home/></RequireAuth>} />
-          <Route path="/profile" element={<RequireAuth><Profile/></RequireAuth>} />
-          <Route path="*" element={<Navigate to="/login" replace />} />
         </Route>
+        <Route element={<Layout />}>
+          <Route
+            path="/"
+            element={
+              <RequireAuth>
+                <Home />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <RequireAuth>
+                <Profile />
+              </RequireAuth>
+            }
+          />
+        </Route>
+
+        <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
